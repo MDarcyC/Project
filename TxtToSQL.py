@@ -4,33 +4,59 @@ import numpy
 
 #Ticker, Date, Open, High, Low, Close, Volume.
 #Comment with #
-print("Hello, World!")
-a = "Hello"
-
+#print("Hello, World!")
 
 file = open("2020jan/20200102.txt")
-for x in file:
-    #Gets line as a string
-    line = file.readline()
-    #Appends "Quotes" for ticker field rendering it as a string
-    # MAY BE OBSOLETE
-#    line = line[:0] + "'" + line[0:]
-#    line = line[:4] + "'" + line[4:]
-    print(line)
-    #For each character in the line array replace
-    for y in line:
-         array = []
-#        index = []
-         #Creates array from the seperated text by "," symbol
-         array.append(line.replace(","," ").split())
-#        #pandas.Series(array[5], index=['Ticker','Date','Open','High','Low','Close','Volume'])
-#         print(array)
+def getPriceInfo(inputFile):
+    zvalue = []
+    for x in inputFile: #Layer loop for reading lines
+        line = file.readline()  #Gets line as a string
+        lineArray = line.split(",") #Turns String to Array
+        zvalue.append(lineArray[1:6])
+    return zvalue
+tickerInfo = getPriceInfo(file)
+print(tickerInfo)
+file.close()
+
+file = open("2020jan/20200102.txt")
+def getTicker(inputFile):
+    rvalue = []
+    for x in inputFile: #Layer loop for reading lines
+        line = file.readline()  #Gets line as a string
+        lineArray = line.split(",") #Turns String to Array
+        rvalue.append(lineArray[0])
+    return rvalue
+listOfTickers = getTicker(file)
+print(listOfTickers)
+file.close()
 
 
-        #Mini Array for each line assigns columns to temporary array
-    #frameLine = pandas.DataFrame(line)
-    #index=['Ticker', 'Date', 'Open', 'High', 'Low', 'Close', 'Volume']
-#    print(line)
+
+
+
+def read(inputFile):
+    for x in inputFile: #Layer loop for reading lines
+        line = file.readline()  #Gets line as a string
+        lineArray = line.split(",")
+        print(lineArray)
+        return lineArray
+
+
+
+
+#    return zvalue
+#        line = lineArray.append(line.replace(","," ").split())  #Appends "Quotes" for ticker field rendering it as a string
+
+
+
+
+
+
+
+
+
+
+
 
 #data = pandas.DataFrame(file, columns=['Ticker', 'Date', 'Open', 'High', 'Low', 'Close', 'Volume'])
 
@@ -38,4 +64,5 @@ for x in file:
 
 #print(data)
 file.close()
-time.sleep(100)
+x = input()
+time.sleep(1)
